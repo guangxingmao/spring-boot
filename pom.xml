@@ -11,6 +11,7 @@
 	<name>springboot</name>
 	<description>Demo project for Spring Boot</description>
 
+	<!-- Spring Boot 启动父依赖 -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -57,6 +58,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!--使用@ConfigurationProperties注解时需添加以下依赖-->
+		<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-configuration-processor</artifactId>
+		<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<build>
