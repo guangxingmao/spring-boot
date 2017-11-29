@@ -2,10 +2,13 @@
 #公共配置
 spring:
   profiles:
-    active: pro
+    active: dev
   jackson:
     #时间格式化
     date-format: yyyy-MM-dd HH:mm:ss
+    #json格式输出
+    serialization:
+      indent_output: true
 
   #thymeleaf start
   thymeleaf:
@@ -23,19 +26,11 @@ spring:
     properties:
       hibernate:
         hbm2ddl:
-          auto: update
+          auto: create
         #主要是指定生成表名的存储引擎为InneoDB
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     #是否打印出自动生产的SQL，方便调试的时候查看
     show-sql: true
-
-#mysql start
-  datasource:
-    url: jdbc:mysql://localhost:3306/user
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
-#mysql end
 
 #log start
 logging:
@@ -49,6 +44,22 @@ logging:
       hibernate: ERROR
 #log end
 
+
+
+---
+spring:
+  profiles: dev
+  #开发时关闭缓存,不然没法看到实时页面
+  thymeleaf:
+    cache: false
+  #mysql start
+  datasource:
+    url: jdbc:mysql://localhost:3306/user
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  #mysql end
+
 #自定义配置 start
 custom:
   name: mgx
@@ -58,15 +69,24 @@ custom:
 
 ---
 spring:
-  profiles: dev
-  #开发时关闭缓存,不然没法看到实时页面
-  thymeleaf:
-    cache: false
----
-spring:
   profiles: pro
   #生产时打开缓存
   thymeleaf:
     cache: true
+
+#自定义配置 start
+custom:
+  name: mgx1
+  sex: 男1
+  age: 242
+#自定义配置 end
+
+  #mysql start
+  datasource:
+    url: jdbc:mysql://localhost:3306/user
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  #mysql end
 
 
